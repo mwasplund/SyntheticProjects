@@ -1,3 +1,11 @@
 Name = "SyntheticProjects"
 Language = "C#"
 Version = "1.0.0"
+Type = "Executable"
+
+Source = [
+    "Program.cs",
+    "ProjectGenerator.cs",
+]
+[Dependencies]
+Runtime = [ "Opal@1.0.1", ]
