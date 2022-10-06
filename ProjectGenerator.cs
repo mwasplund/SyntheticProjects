@@ -8,18 +8,19 @@ namespace SyntheticProjects
 {
 	public class ProjectGenerator
 	{
-		private static Path RecipeFileName => new Path("Recipe.toml");
-		private static string RecipeFileFormat => @"Name = ""{0}""
-Language = ""C#""
-Version = ""1.0.0""
-Type = ""Library""
+		private static Path RecipeFileName => new Path("Recipe.sml");
+		private static string RecipeFileFormat => @"Name: ""{0}""
+Language: ""C#""
+Version: ""1.0.0""
+Type: ""Library""
 
-Source = [
+Source: [
 {1}]
 
-[Dependencies]
-Runtime = [
-{2}]
+Dependencies: {{
+	Runtime: [
+{2}	]
+}}
 ";
 
 		private static string ClassFileNameFormat => "{0}.cs";
@@ -119,11 +120,11 @@ namespace {0}
 			IList<Path> references,
 			IList<Path> source)
 		{
-			var sourceList = string.Concat(source.Select(value => $"\t\"{value}\",\n"));
+			var sourceList = string.Concat(source.Select(value => $"\t\"{value}\"\n"));
 			var referencesList = string.Concat(
 				references
 				.Select(value => value.GetRelativeTo(directory))
-				.Select(value => $"\t\"{value}\",\n"));
+				.Select(value => $"\t\t\"{value}\"\n"));
 
 			var fileContent = string.Format(
 				RecipeFileFormat,
