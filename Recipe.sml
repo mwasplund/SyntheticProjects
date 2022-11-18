@@ -4,9 +4,9 @@ Version: "1.0.0"
 Type: "Executable"
 
 Source: [
-    "Program.cs"
-    "ProjectGenerator.cs"
+	"Program.cs"
+	"ProjectGenerator.cs"
 ]
 Dependencies: {
-    Runtime: [ "Opal@1.1.0" ]
+	Runtime: [ "Opal@1.1.0" ]
 }
