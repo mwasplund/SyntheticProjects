@@ -6,11 +6,11 @@ using Opal;
 
 namespace SyntheticProjects
 {
-	public class ProjectGenerator
+	public class CSharpProjectGenerator
 	{
 		private static Path RecipeFileName => new Path("Recipe.sml");
 		private static string RecipeFileFormat => @"Name: ""{0}""
-Language: ""C#""
+Language: ""C#|0.1""
 Version: ""1.0.0""
 Type: ""Library""
 
@@ -42,7 +42,7 @@ namespace {0}
 		private int maxDepth;
 		private int fileCount;
 
-		public ProjectGenerator(int fanOut, int maxDepth, int fileCount)
+		public CSharpProjectGenerator(int fanOut, int maxDepth, int fileCount)
 		{
 			this.fanOut = fanOut;
 			this.maxDepth = maxDepth;
