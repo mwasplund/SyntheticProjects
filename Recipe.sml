@@ -4,8 +4,9 @@ Version: "1.0.0"
 Type: "Executable"
 
 Source: [
-	"CppProjectGenerator.cs"
-	"CSharpProjectGenerator.cs"
+	"Soup/CppProjectGenerator.cs"
+	"Soup/CSharpProjectGenerator.cs"
+	"Xmake/CppProjectGenerator.cs"
 	"Program.cs"
 ]
 Dependencies: {

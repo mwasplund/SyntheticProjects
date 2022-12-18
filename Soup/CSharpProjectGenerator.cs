@@ -4,15 +4,15 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Opal;
 
-namespace SyntheticProjects
+namespace SyntheticProjects.Soup
 {
-	public class CppProjectGenerator
+	public class CSharpProjectGenerator
 	{
 		private static Path RecipeFileName => new Path("Recipe.sml");
 		private static string RecipeFileFormat => @"Name: ""{0}""
-Language: ""C++|0.1""
+Language: ""C#|0.1""
 Version: ""1.0.0""
-Type: ""StaticLibrary""
+Type: ""Library""
 
 Source: [
 {1}]
@@ -23,17 +23,17 @@ Dependencies: {{
 }}
 ";
 
-		private static string ClassFileNameFormat => "{0}.cpp";
-		private static string ClassFileFormat => @"
+		private static string ClassFileNameFormat => "{0}.cs";
+		private static string ClassFileFormat => @"using System;
+
 namespace {0}
 {{
-	class {1}
+	public class {1}
 	{{
-	public:
-		static void DoStuff()
+		public static void DoStuff()
 		{{
 		}}
-	}};
+	}}
 }}
 ";
 
@@ -42,7 +42,7 @@ namespace {0}
 		private int maxDepth;
 		private int fileCount;
 
-		public CppProjectGenerator(int fanOut, int maxDepth, int fileCount)
+		public CSharpProjectGenerator(int fanOut, int maxDepth, int fileCount)
 		{
 			this.fanOut = fanOut;
 			this.maxDepth = maxDepth;

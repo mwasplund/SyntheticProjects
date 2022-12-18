@@ -18,7 +18,7 @@ namespace SyntheticProjects
 			var fanOut = 3;
 			var depth = 4;
 			var fileCount = 10;
-			var generator = new CppProjectGenerator(fanOut, depth, fileCount);
+			var generator = new Soup.CppProjectGenerator(fanOut, depth, fileCount);
 			await generator.GenerateProjectsAsync(
 				directory);
 		}
