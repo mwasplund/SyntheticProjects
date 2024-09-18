@@ -1,14 +1,20 @@
-Version: 4
+Version: 5
 Closures: {
 	Root: {
-		"C#": [
-			{ Name: "Opal", Version: "1.4.0", Build: "Build0" }
-			{ Name: "SyntheticProjects", Version: "./", Build: "Build0" }
-		]
+		'C#': {
+			SyntheticProjects: { Version: './', Build: 'Build0', Tool: 'Tool0' }
+			'mwasplund|Opal': { Version: '1.4.0', Build: 'Build0', Tool: 'Tool0' }
+		}
 	}
 	Build0: {
-		"C#": [
-			{ Name: "Soup.CSharp", Version: "0.7.4" }
-		]
+		Wren: {
+			'mwasplund|Soup.CSharp': { Version: '0.13.0' }
+		}
+	}
+	Tool0: {
+		'C++': {
+			'mwasplund|copy': { Version: '1.1.0' }
+			'mwasplund|mkdir': { Version: '1.1.0' }
+		}
 	}
 }
