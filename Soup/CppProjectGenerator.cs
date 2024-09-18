@@ -8,11 +8,11 @@ namespace SyntheticProjects.Soup
 {
 	public class CppProjectGenerator
 	{
-		private static Path RecipeFileName => new Path("Recipe.sml");
-		private static string RecipeFileFormat => @"Name: ""{0}""
-Language: ""C++|0.1""
-Version: ""1.0.0""
-Type: ""StaticLibrary""
+		private static Path RecipeFileName => new Path("./Recipe.sml");
+		private static string RecipeFileFormat => @"Name: '{0}'
+Language: (C++@0)
+Version: 1.0.0
+Type: 'StaticLibrary'
 
 Source: [
 {1}]
@@ -55,7 +55,7 @@ namespace {0}
 
 			// Create the root project
 			var projectName = $"RootProject";
-			var projectDirectory = root + new Path(projectName);
+			var projectDirectory = root + new Path($"./{projectName}/");
 			await GenerateProjectAsync(projectDirectory, projectName, references);
 		}
 
@@ -69,7 +69,7 @@ namespace {0}
 					references = await GenerateProjectsRecursiveAsync(root, depth + 1);
 
 				var projectName = $"Project{uniqueId++}";
-				var projectDirectory = root + new Path(projectName);
+				var projectDirectory = root + new Path($"./{projectName}/");
 				await GenerateProjectAsync(projectDirectory, projectName, references);
 
 				resultReferences.Add(projectDirectory);
@@ -102,7 +102,7 @@ namespace {0}
 		private static async Task<Path> WriteClassFileAsync(Path directory, string projectName, string className)
 		{
 			var fileContent = string.Format(ClassFileFormat, projectName, className);
-			var file = new Path(string.Format(ClassFileNameFormat, className));
+			var file = new Path($"./{string.Format(ClassFileNameFormat, className)}");
 			var filePath = directory + file;
 
 			using (var fileStream = System.IO.File.Open(filePath.ToString(), System.IO.FileMode.Create, System.IO.FileAccess.Write))
@@ -120,11 +120,11 @@ namespace {0}
 			IList<Path> references,
 			IList<Path> source)
 		{
-			var sourceList = string.Concat(source.Select(value => $"\t\"{value}\"\n"));
+			var sourceList = string.Concat(source.Select(value => $"\t'{value}'\n"));
 			var referencesList = string.Concat(
 				references
 				.Select(value => value.GetRelativeTo(directory))
-				.Select(value => $"\t\t\"{value}\"\n"));
+				.Select(value => $"\t\t'{value}'\n"));
 
 			var fileContent = string.Format(
 				RecipeFileFormat,

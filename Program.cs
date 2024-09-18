@@ -14,7 +14,7 @@ namespace SyntheticProjects
 				return;
 			}
 
-			var directory = new Path(args[0]);
+			var directory = Path.Parse(args[0]);
 			var fanOut = 3;
 			var depth = 4;
 			var fileCount = 100;
